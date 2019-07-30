@@ -25,7 +25,6 @@ class ProjectsApp extends React.Component {
                <h4  style={{marginLeft:20,color:"blue"}}>Company Name</h4> 
                <ProjectExplorer openModal={this.openModal} closeModal={this.closeModal}/>
                <AddProject isModalOpen={this.state.isModalOpen} closeModal={this.closeModal}/>
-            
             </div>);
     }
 

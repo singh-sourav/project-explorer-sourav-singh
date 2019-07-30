@@ -12,7 +12,8 @@ class Projects extends React.Component {
     }
 
     loadMore=() => {
-      this.setState(prevState => ({
+      this.setState(prevState => (
+        {
         pageOffset: prevState.pageOffset + 1,
       }));
     }
@@ -22,8 +23,9 @@ class Projects extends React.Component {
     }
 
     render() {
-      const loadedProjects = this.props.projects.slice(0, this.state.pageOffset * 9);
 
+      //search filtering
+      const loadedProjects = this.props.projects.slice(0, this.state.pageOffset * 9);
       const filteredProjectsData = loadedProjects.filter(item => item.name.toLowerCase().includes(this.props.searchCriteria.toLowerCase()));
 
       const filteredProjects = filteredProjectsData.map(item => <Project title={item.name} key={item.id} description={item.description} timestamp={item.timestamp} />);
@@ -73,6 +75,6 @@ const styles={
         height: 30, 
         border: '1px solid black', 
         backgroundColor: '#DCD0CE',
-    }
+    },
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Projects);

@@ -27,7 +27,7 @@ handleDescriptionChange=(e) => {
 }
 
 submitData=() => {
-    this.props.addProjectToServer(this.state.titleInput, this.state.titleDescription);
+    this.props.addProjectToServer(this.state.titleInput, this.state.titleDescription,this.props.closeModal);
 }
 
 
@@ -40,6 +40,7 @@ render() {
         onRequestClose={this.props.closeModal}
         style={customStyles}
         contentLabel="Example Modal"
+        ariaHideApp={false}
     >
         <div style={styles.modalChild}>
         <h1>Add Project</h1>
@@ -50,8 +51,10 @@ render() {
         <label>Project Description</label>
         <br />
         <textarea rows="10" cols="50" onChange={this.handleDescriptionChange} placeholder="Enter Description" />
-        <button onClick={this.submitData} style={styles.addProjectButton}>ADD PROJECT</button>
+        <div style={styles.buttonList}>
+        <button onClick={this.submitData} style={styles.addProjectButton}>+ ADD PROJECT</button>
         <button onClick={this.props.closeModal} style={styles.closeButton}>CLOSE</button>
+        </div>
         </div>
     </Modal>
     );
@@ -76,15 +79,24 @@ const styles={
         flexDirection: 'column', 
         padding: 50 
     },
+    buttonList:{ 
+      display: 'flex', 
+      flexDirection: 'row', 
+      justifyContent: "space-evenly" ,
+      height:30,
+      marginTop:10,
+  },
     addProjectButton:{
-        marginBottom: 20, 
-        marginTop: 20, 
         border: '1px solid black', 
-        backgroundColor: '#DCD0CE',
+        backgroundColor: 'darkgreen',
+        fontWeight:"bold",
+        color:"white"
         },
     closeButton:{
              border: '1px solid black',
-             backgroundColor: '#DCD0CE' 
+             fontWeight:"bold",
+             backgroundColor: 'darkred',
+             color:"white"
         }
 
 
@@ -93,7 +105,7 @@ const styles={
 const customStyles = {
   content: {
     top: '50%',
-    height: '80%',
+    height: '70%',
     width: '40%',
     left: '50%',
     right: 'auto',
