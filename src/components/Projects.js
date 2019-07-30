@@ -26,20 +26,18 @@ class Projects extends React.Component {
 
       const filteredProjectsData = loadedProjects.filter(item => item.name.toLowerCase().includes(this.props.searchCriteria.toLowerCase()));
 
-      const filteredProjects = filteredProjectsData.map(item => <Project title={item.name} key={item.id} description={item.description} timestamp={this.props.timestamp} />);
+      const filteredProjects = filteredProjectsData.map(item => <Project title={item.name} key={item.id} description={item.description} timestamp={item.timestamp} />);
 
       return (
         <div>
           <div className="card-wrapper">
             {filteredProjects}
           </div>
-          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+          <div style={styles.loadMoreSection}>
             {(this.props.projects.length > filteredProjects.length) && (
             <button
               onClick={this.loadMore}
-              style={{
-                color: 'black', height: 30, border: '1px solid black', backgroundColor: '#DCD0CE',
-              }}
+              style={styles.loadMoreButton}
             >
             LoadMore
             </button>
@@ -62,4 +60,19 @@ const mapDispatchToProps = dispatch => bindActionCreators(
   dispatch,
 );
 
+
+const styles={
+
+    loadMoreSection:{
+        display: 'flex',
+        flexDirection: 'row', 
+        justifyContent: 'center' 
+    },
+    loadMoreButton:{
+        color: 'black', 
+        height: 30, 
+        border: '1px solid black', 
+        backgroundColor: '#DCD0CE',
+    }
+}
 export default connect(mapStateToProps, mapDispatchToProps)(Projects);

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { addProjectToServer } from '../actions/project';
 
 class AddProject extends React.Component {
-    
+
 constructor(props) {
 super(props);
 this.state = {
@@ -41,25 +41,32 @@ render() {
         style={customStyles}
         contentLabel="Example Modal"
     >
-        <div style={{ display: 'flex', flexDirection: 'column', padding: 50 }}>
+        <div style={styles.modalChild}>
         <h1>Add Project</h1>
         <label>Project Title</label>
         <br />
-        <textarea rows="4" cols="50" onChange={this.handleTitleChange} placeholder="Enter Title" />
+        <textarea 
+        rows="4" 
+        cols="50" 
+        onChange={this.handleTitleChange} 
+        placeholder="Enter Title" />
         <br />
         <br />
         <label>Project Description</label>
         <br />
-        <textarea rows="10" cols="50" onChange={this.handleDescriptionChange} placeholder="Enter Description" />
+        <textarea 
+        rows="10" 
+        cols="50" 
+        onChange={this.handleDescriptionChange} 
+        placeholder="Enter Description" 
+        />
         <button
             onClick={this.submitData}
-            style={{
-            marginBottom: 20, marginTop: 20, border: '1px solid black', backgroundColor: '#DCD0CE',
-            }}
+            style={styles.addProjectButton}
         >
         ADD PROJECT
         </button>
-        <button onClick={this.props.closeModal} style={{ border: '1px solid black', backgroundColor: '#DCD0CE' }}>CLOSE</button>
+        <button onClick={this.props.closeModal} style={styles.closeButton}>CLOSE</button>
         </div>
     </Modal>
     );
@@ -76,6 +83,27 @@ const mapDispatchToProps = dispatch => bindActionCreators(
   },
   dispatch,
 );
+
+const styles={
+
+    modalChild:{ 
+        display: 'flex', 
+        flexDirection: 'column', 
+        padding: 50 
+    },
+    addProjectButton:{
+        marginBottom: 20, 
+        marginTop: 20, 
+        border: '1px solid black', 
+        backgroundColor: '#DCD0CE',
+        },
+    closeButton:{
+             border: '1px solid black',
+             backgroundColor: '#DCD0CE' 
+        }
+
+
+}
 
 const customStyles = {
   content: {
