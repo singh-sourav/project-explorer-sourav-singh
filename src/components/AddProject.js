@@ -45,27 +45,12 @@ render() {
         <h1>Add Project</h1>
         <label>Project Title</label>
         <br />
-        <textarea 
-        rows="4" 
-        cols="50" 
-        onChange={this.handleTitleChange} 
-        placeholder="Enter Title" />
-        <br />
-        <br />
+        <textarea rows="4" cols="50" onChange={this.handleTitleChange} placeholder="Enter Title" />
+        <br /><br />
         <label>Project Description</label>
         <br />
-        <textarea 
-        rows="10" 
-        cols="50" 
-        onChange={this.handleDescriptionChange} 
-        placeholder="Enter Description" 
-        />
-        <button
-            onClick={this.submitData}
-            style={styles.addProjectButton}
-        >
-        ADD PROJECT
-        </button>
+        <textarea rows="10" cols="50" onChange={this.handleDescriptionChange} placeholder="Enter Description" />
+        <button onClick={this.submitData} style={styles.addProjectButton}>ADD PROJECT</button>
         <button onClick={this.props.closeModal} style={styles.closeButton}>CLOSE</button>
         </div>
     </Modal>

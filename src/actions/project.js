@@ -4,7 +4,7 @@ export const fetchAllProjects = () => (dispatch) => {
        headers: {
         'Content-Type': 'application/json',
       },
-   }).then((response)=>response.json()).then((json)=>{
+   }).then((response)=>response.text()).then((json)=>{
        console.log(json);
        if(json.status===200)
        dispatch(insertProject(json.data))
