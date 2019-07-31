@@ -22,7 +22,6 @@ class ProjectsApp extends React.Component {
     render() {
         return (
             <div style={{display:"flex",flexDirection:"column"}}>
-               <h4  style={{marginLeft:20,color:"blue"}}>Company Name</h4> 
                <ProjectExplorer openModal={this.openModal} closeModal={this.closeModal}/>
                <AddProject isModalOpen={this.state.isModalOpen} closeModal={this.closeModal}/>
             </div>);

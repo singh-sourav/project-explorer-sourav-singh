@@ -1,0 +1,8 @@
+Run the follwowing commands :
+
+1) npm install : "Installs all the npm dependencies"
+2) npm start : "Runs the app"
+
+
+
+Note : CORS policy check is blocking my browser. I have implemented dummy flow too which adds the dummy data if CORS related error is there just for checking of features like "Search projects".
