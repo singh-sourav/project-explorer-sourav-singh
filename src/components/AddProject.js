@@ -11,22 +11,32 @@ super(props);
 this.state = {
     titleInput: '',
     titleDescription: '',
+    validationError:false,
 };
 }
 
 handleTitleChange=(e) => {
   this.setState({
     titleInput: e.target.value,
+    validationError:false
   });
 }
 
 handleDescriptionChange=(e) => {
   this.setState({
     titleDescription: e.target.value,
+    validationError:false
   });
 }
 
 submitData=() => {
+   
+if(this.state.titleDescription===""||this.state.titleInput===""){
+  this.setState({
+    validationError: true,
+  })
+}
+else
     this.props.addProjectToServer(this.state.titleInput, this.state.titleDescription,this.props.closeModal);
 }
 
@@ -54,7 +64,9 @@ render() {
         <div style={styles.buttonList}>
         <button onClick={this.submitData} style={styles.addProjectButton}>+ ADD PROJECT</button>
         <button onClick={this.props.closeModal} style={styles.closeButton}>CLOSE</button>
+       
         </div>
+       {this.state.validationError && <p style={{textAlign:"center", color:"red"}}>**No fields can be empty</p>}
         </div>
     </Modal>
     );
@@ -93,10 +105,10 @@ const styles={
         color:"white"
         },
     closeButton:{
-             border: '1px solid black',
-             fontWeight:"bold",
-             backgroundColor: 'darkred',
-             color:"white"
+        border: '1px solid black',
+        fontWeight:"bold",
+        backgroundColor: 'darkred',
+        color:"white"
         }
 
 
@@ -104,14 +116,7 @@ const styles={
 
 const customStyles = {
   content: {
-    top: '50%',
-    height: '70%',
-    width: '40%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
+   
   },
 };
 

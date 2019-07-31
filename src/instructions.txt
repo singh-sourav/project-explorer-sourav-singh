@@ -1,6 +1,6 @@
 Run the follwowing commands :
 
-1) npm install : "Installs all the npm dependencies"
+1) npm install : "Installs all the npm dependencies like redux and redux thunk"
 2) npm start : "Runs the app"
 
 
