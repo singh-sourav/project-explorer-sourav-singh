@@ -2,6 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Project from './Project';
+import Loading from "./../../src/Loading_icon.gif";
 import { fetchAllProjects } from '../actions/project';
 import '../style.css';
 
@@ -9,6 +10,7 @@ class Projects extends React.Component {
     state={
       pageOffset: 1,
       searchInput: '',
+      loading:true,
     }
 
     loadMore=() => {
@@ -18,8 +20,15 @@ class Projects extends React.Component {
       }));
     }
 
+    stopLoader=()=>{
+      this.setState({
+        loading:false,
+      })
+    }
+
     componentDidMount() {
-      this.props.fetchAllProjects();
+
+      this.props.fetchAllProjects(this.stopLoader);
     }
 
     render() {
@@ -32,6 +41,13 @@ class Projects extends React.Component {
 
       return (
         <div>
+       <div style={{marginTop:50,display:"flex",flexDirection:"row",justifyContent:"center"}}>
+           {this.state.loading && <img
+              width="200"
+              alt="loading.."
+              src={Loading}
+            />}
+          </div>
           <div className="card-wrapper">
             {filteredProjects}
           </div>

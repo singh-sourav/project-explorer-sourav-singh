@@ -2,7 +2,7 @@ import { dummydata } from "../dummydata";
 
 //redux-thunk : fetchAllProjects , addProjectToServer
 
-export const fetchAllProjects = () => (dispatch) => {
+export const fetchAllProjects = (callback) => (dispatch) => {
    fetch("https://protected-ocean-59683.herokuapp.com/fetchProjectList",{
        method:"GET",
        headers: {
@@ -10,14 +10,17 @@ export const fetchAllProjects = () => (dispatch) => {
       },
    }).then((response)=>response.text()).then((json)=>{
        console.log(json);
+       callback();
        if(json.status===200)
        dispatch(insertProject(json.data))
+
        else{    
        //if there is no permission to fetch from server. Populate dummy data to check other app functionlity    
        dispatch(insertProject(dummydata))
        }
    }
    ).catch((error)=> {
+    callback();
        console.log(error);
        //if there is no permission to fetch from server. Populate dummy data to check other app functionlity
        dispatch(insertProject(dummydata));
